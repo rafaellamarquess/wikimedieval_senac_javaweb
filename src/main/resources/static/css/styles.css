@@ -1,0 +1,108 @@
+/* Resetando margens e preenchimentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definindo cores principais */
+:root {
+    --cor-azul: #1E3A8A;
+    --cor-preto: #111827;
+    --cor-branco: #FFFFFF;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-preto);
+    color: var(--cor-branco);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--cor-azul);
+}
+
+.navbar a.nav-link {
+    color: var(--cor-branco) !important;
+}
+
+.navbar-toggler-icon {
+    background-color: var(--cor-branco);
+}
+
+/* Banner */
+.alert {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.jumbotron {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.jumbotron h2 {
+    font-size: 2.5rem;
+}
+
+/* Imagem abaixo do banner */
+#banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Seções principais */
+.container h3 {
+    color: var(--cor-azul);
+    margin-bottom: 20px;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 3px solid var(--cor-branco);
+}
+
+footer a {
+    color: var(--cor-branco);
+    text-decoration: none;
+}
+
+footer form input,
+footer form textarea {
+    background-color: var(--cor-preto);
+    border: 1px solid var(--cor-azul);
+    color: var(--cor-branco);
+}
+
+footer form button {
+    background-color: var(--cor-azul);
+    border: none;
+    color: var(--cor-branco);
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}

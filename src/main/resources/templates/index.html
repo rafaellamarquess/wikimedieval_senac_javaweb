@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Medieval</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Wiki Medieval</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/filmes">Filmes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jogos">Jogos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/livros">Livros</a>
+                </li>
+                <li class="nav-item">
+                    <form action="/search" method="get" class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar" name="query" required>
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-4 mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h2>Bem-vindo ao Wiki Medieval!</h2>
+                <p>Aqui você encontra tudo sobre a Idade Média e suas representações na cultura pop.</p>
+            </div>
+            <div class="container">
+                <img id="banner-image" src="/img/banner.jpg" alt="Imagem medieval">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h3>Explore nossas categorias:</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <h4><a href="/filmes" class="text-decoration-none">Filmes</a></h4>
+            <p>Descubra filmes que retratam a Idade Média e sua cultura.</p>
+        </div>
+        <div class="col-md-4">
+            <h4><a href="/jogos" class="text-decoration-none">Jogos</a></h4>
+            <p>Explore jogos baseados na Idade Média e suas histórias.</p>
+        </div>
+        <div class="col-md-4">
+            <h4><a href="/livros" class="text-decoration-none">Livros</a></h4>
+            <p>Leia sobre a Idade Média através de livros clássicos e modernos.</p>
+        </div>
+    </div>
+</div>
+
+
+<footer class="bg-dark text-white text-center p-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Coluna para os links de contato -->
+            <div class="col-md-6">
+                <p><strong>Entre em contato conosco:</strong></p>
+                <ul class="list-unstyled">
+                    <li><a href="mailto:contato@wikimedieval.com" class="text-white">Email: contato@wikimedieval.com</a></li>
+                    <li><a href="tel:+550000000000" class="text-white">Telefone: +55 00 0000-0000</a></li>
+                    <li><a href="https://www.wikimedieval.com" class="text-white">Website: www.wikimedieval.com</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <form action="/contato" method="post">
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Sua mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+        <p>&copy; 2024 Wiki Medieval | Todos os direitos reservados</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
