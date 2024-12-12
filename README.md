@@ -9,7 +9,7 @@ Wiki Medieval é uma aplicação web dedicada a reunir informações sobre a Ida
 **Ferramentas utilizadas:**
 - [Java](#)
 - [Spring Boot](https://spring.io/)
-- [Thymeleaf](https://reactjs.org/)
+- [Thymeleaf](https://thymeleaf.org/)
 - [MySQL](https://www.mysql.com/)
 
 **Esta aplicação inclui as seguintes funcionalidades**:
