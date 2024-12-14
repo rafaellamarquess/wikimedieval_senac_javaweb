@@ -5,6 +5,7 @@ import com.wiki.medieval.repository.MidiaRepository;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class MidiaController {
         this.midiaRepository = midiaRepository;
     }
 
+    // Lista Filmes
     @GetMapping("/filmes")
     public String listarFilmes(Model model) {
         List<MidiaModel> filmes = midiaRepository.findAllByTipo(MidiaModel.TipoMidia.Filme);
@@ -25,6 +27,7 @@ public class MidiaController {
         return "midias/filmes/listafilmes";
     }
 
+    // Lista Jogos
     @GetMapping("/jogos")
     public String listarJogos(Model model) {
         List<MidiaModel> jogos = midiaRepository.findAllByTipo(MidiaModel.TipoMidia.Videogame);
@@ -32,6 +35,7 @@ public class MidiaController {
         return "midias/jogos/listajogos";
     }
 
+    // Lista Livros
     @GetMapping("/livros")
     public String listarLivros(Model model) {
         List<MidiaModel> livros = midiaRepository.findAllByTipo(MidiaModel.TipoMidia.Livro);
@@ -39,5 +43,38 @@ public class MidiaController {
         return "midias/livros/listalivros";
     }
 
+    // Exibi formulário de adição de mídia
+    @GetMapping("/adicionarmidia")
+    public String exibirFormularioMidia(Model model) {
+        model.addAttribute("midia", new MidiaModel());
+        return "midias/adicionarmidia";
+    }
+
+    // Exibi formulário para editar filme
+    @GetMapping("/filmes/editarfilme/{id}")
+    public String editarFilme(@PathVariable Long id, Model model) {
+        MidiaModel midiaModel = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        model.addAttribute("midia", midiaModel);
+        return "midias/filmes/editarfilme"; // This should point to your template
+    }
+
+    // Exibi formulário para editar filme
+    @GetMapping("/jogos/editarjogo/{id}")
+    public String editarJogo(@PathVariable Long id, Model model) {
+        MidiaModel midiaModel = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        model.addAttribute("midia", midiaModel);
+        return "midias/jogos/editarjogo"; // This should point to your template
+    }
+
+    // Exibi formulário para editar filme
+    @GetMapping("/livros/editarlivro/{id}")
+    public String editarLivro(@PathVariable Long id, Model model) {
+        MidiaModel midiaModel = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        model.addAttribute("midia", midiaModel);
+        return "midias/livros/editarlivro"; // This should point to your template
+    }
 
 }

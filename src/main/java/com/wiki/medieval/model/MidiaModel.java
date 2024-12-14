@@ -32,6 +32,7 @@ public class MidiaModel implements Serializable {
         Livro,
         Filme,
         Videogame,
+        ;
     }
 }
 

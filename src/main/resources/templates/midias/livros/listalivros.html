@@ -42,6 +42,11 @@
 <div class="container mt-5">
     <h1 class="text-center">Livros - Wiki Medieval</h1>
     <div class="list-group">
+
+        <div class="text-end mb-3">
+            <a th:href="@{/adicionarmidia}" class="btn btn-success">Adicionar Livro</a>
+        </div>
+
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -61,8 +66,8 @@
                 <td th:text="${livro.autorDiretor}"></td>
                 <td th:text="${livro.anoLancamento}"></td>
                 <td>
-                    <a th:href="@{/livro/editar/{id}(id=${livro.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/livro/deletar/{id}(id=${livro.id})}" class="btn btn-danger btn-sm">Deletar</a>
+                    <a th:href="@{/livros/editarlivro/{id}(id=${livro.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/livros/deletarlivro/{id}(id=${livro.id})}" class="btn btn-danger btn-sm">Deletar</a>
                 </td>
             </tr>
             </tbody>
