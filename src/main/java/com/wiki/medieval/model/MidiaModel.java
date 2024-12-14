@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "midias")
 public class MidiaModel implements Serializable {
 
     @Id
@@ -28,9 +29,9 @@ public class MidiaModel implements Serializable {
     private Integer anoLancamento;
 
     public enum TipoMidia {
-        LIVRO,
-        FILME,
-        VIDEOGAME
+        Livro,
+        Filme,
+        Videogame,
     }
 }
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki Medieval</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Filmes - Wiki Medieval</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
@@ -41,42 +40,41 @@
 </nav>
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h4>Login - Wiki Medieval</h4>
-                </div>
-                <div class="card-body">
-                    <form action="/login" method="post">
-                        <!-- Erro de autenticação -->
-                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                            Usuário ou senha inválidos.
-                        </div>
-                        <!-- Formulário de login -->
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <div class="mb-3 text-center">
-                            <button type="submit" class="btn btn-primary">Entrar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <h1 class="text-center">Jogos - Wiki Medieval</h1>
+    <div class="list-group">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Produtora</th>
+                <th scope="col">Ano de Lançamento</th>
+                <th scope="col">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="jogo: ${jogos}">
+                <td th:text="${jogo.id}"></td>
+                <td th:text="${jogo.titulo}"></td>
+                <td th:text="${jogo.descricao}"></td>
+                <td th:text="${jogo.autorDiretor}"></td>
+                <td th:text="${jogo.anoLancamento}"></td>
+                <td>
+                    <a th:href="@{/jogo/editar/{id}(id=${jogo.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/jogo/deletar/{id}(id=${jogo.id})}" class="btn btn-danger btn-sm">Deletar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
 
 
 <footer class="bg-dark text-white text-center p-4 mt-5">
     <div class="container">
         <div class="row">
-            <!-- Coluna para os links de contato -->
             <div class="col-md-6">
                 <p><strong>Entre em contato conosco:</strong></p>
                 <ul class="list-unstyled">
@@ -105,6 +103,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
