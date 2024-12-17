@@ -41,34 +41,35 @@
 <div class="container mt-5">
     <h1 class="text-center">Editar Filme</h1>
 
-    <form th:action="@{/midias/filmes}" method="post">
+    <form th:action="@{/midias/filmes/{id}(id=${midia.id})}" method="post" th:object="${midia}">
         <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
         </div>
         <div class="mb-3">
-            <label for="sinopse" class="form-label">Sinopse</label>
-            <textarea class="form-control" id="sinopse" name="sinopse" rows="3" required></textarea>
+            <label for="descricao" class="form-label">Descricao</label>
+            <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="genero" class="form-label">Gênero</label>
-            <input type="text" class="form-control" id="genero" name="genero" required>
+            <label for="autorDiretor" class="form-label">Diretor</label>
+            <input type="text" class="form-control" id="autorDiretor" th:field="*{autorDiretor}" required>
         </div>
         <div class="mb-3">
             <label for="anoLancamento" class="form-label">Ano de Lançamento</label>
-            <input type="number" class="form-control" id="anoLancamento" name="anoLancamento" required>
+            <input type="number" class="form-control" id="anoLancamento" th:field="*{anoLancamento}" required>
         </div>
         <div class="mb-3">
             <label for="tipoMidia" class="form-label">Tipo de Mídia</label>
-            <select class="form-control" id="tipoMidia" name="tipoMidia" required>
-                <option value="FILME">Filme</option>
-                <option value="JOGO">Jogo</option>
-                <option value="LIVRO">Livro</option>
+            <select class="form-control" id="tipoMidia" th:field="*{tipo}" required>
+                <option value="Filme">Filme</option>
+                <option value="VideoGame">Jogo</option>
+                <option value="Livro">Livro</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Salvar Mídia</button>
     </form>
-    <a href="/midias" class="btn btn-secondary mt-3">Voltar para a Lista de Mídias</a>
+
+    <a href="/filmes" class="btn btn-secondary mt-3">Voltar para a Lista de Filmes</a>
 </div>
 
 <footer class="bg-dark text-white text-center p-4 mt-5">

@@ -5,7 +5,9 @@ import com.wiki.medieval.repository.MidiaRepository;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -75,6 +77,20 @@ public class MidiaController {
                 .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
         model.addAttribute("midia", midiaModel);
         return "midias/livros/editarlivro"; // This should point to your template
+    }
+
+    // Salva os dados editados no banco
+    @PostMapping("/midias/filmes/{id}")
+    public String salvarEdicao(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
+        MidiaModel midiaExistente = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        midiaExistente.setTitulo(midiaAtualizada.getTitulo());
+        midiaExistente.setDescricao(midiaAtualizada.getDescricao());
+        midiaExistente.setAutorDiretor(midiaAtualizada.getAutorDiretor());
+        midiaExistente.setAnoLancamento(midiaAtualizada.getAnoLancamento());
+        midiaExistente.setTipo(midiaAtualizada.getTipo());
+        midiaRepository.save(midiaExistente);
+        return "redirect:/filmes";
     }
 
 }
