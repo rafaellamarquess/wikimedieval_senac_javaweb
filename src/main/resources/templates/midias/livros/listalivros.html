@@ -67,7 +67,8 @@
                 <td th:text="${livro.anoLancamento}"></td>
                 <td>
                     <a th:href="@{/livros/editarlivro/{id}(id=${livro.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/livros/deletarlivro/{id}(id=${livro.id})}" class="btn btn-danger btn-sm">Deletar</a>
+                    <a th:href="@{/livros/deletar/{id}(id=${livro.id})}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Tem certeza que deseja deletar essa mídia?')">Deletar</a>
                 </td>
             </tr>
             </tbody>

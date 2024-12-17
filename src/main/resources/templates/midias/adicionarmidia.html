@@ -37,55 +37,54 @@
         </div>
     </div>
 </nav>
-
 <div class="container mt-5">
     <h1 class="text-center">Adicionar Mídia</h1>
 
-    <form th:action="@{/midias}" method="post">
+    <form th:action="@{/midias}" method="post" th:object="${midia}">
         <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
             <div class="invalid-feedback">
                 O título é obrigatório.
             </div>
         </div>
         <div class="mb-3">
             <label for="descricao" class="form-label">Descrição</label>
-            <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+            <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" required></textarea>
             <div class="invalid-feedback">
                 A descrição é obrigatória.
             </div>
         </div>
         <div class="mb-3">
             <label for="autorDiretor" class="form-label">Autor/Diretor</label>
-            <input type="text" class="form-control" id="autorDiretor" name="autorDiretor" required>
+            <input type="text" class="form-control" id="autorDiretor" th:field="*{autorDiretor}" required>
             <div class="invalid-feedback">
                 O nome do autor ou diretor é obrigatório.
             </div>
         </div>
         <div class="mb-3">
+            <label for="anoLancamento" class="form-label">Ano de Lançamento</label>
+            <input type="number" class="form-control" id="anoLancamento" th:field="*{anoLancamento}" required>
+            <div class="invalid-feedback">
+                O ano de lançamento é obrigatório.
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="tipoMidia" class="form-label">Tipo de Mídia</label>
-            <select class="form-select" id="tipoMidia" name="tipoMidia" required>
+            <select class="form-select" id="tipoMidia" th:field="*{tipo}" required>
                 <option value="">Selecione...</option>
                 <option value="Filme">Filme</option>
                 <option value="Livro">Livro</option>
-                <option value="Jogo">Jogo</option>
+                <option value="Videogame">Jogo</option>
             </select>
             <div class="invalid-feedback">
                 O tipo de mídia é obrigatório.
             </div>
         </div>
-        <div class="mb-3">
-            <label for="anoLancamento" class="form-label">Ano de Lançamento</label>
-            <input type="number" class="form-control" id="anoLancamento" name="anoLancamento" required>
-            <div class="invalid-feedback">
-                O ano de lançamento é obrigatório.
-            </div>
-        </div>
         <button type="submit" class="btn btn-primary">Salvar Mídia</button>
     </form>
 
-    <a href="/midias" class="btn btn-secondary mt-3">Voltar para a Lista de Mídias</a>
+    <a href="/" class="btn btn-secondary mt-3">Voltar</a>
 </div>
 
 <footer class="bg-dark text-white text-center p-4 mt-5">

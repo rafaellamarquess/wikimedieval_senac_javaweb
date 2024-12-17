@@ -67,7 +67,8 @@
                 <td th:text="${jogo.anoLancamento}"></td>
                 <td>
                     <a th:href="@{/jogos/editarjogo/{id}(id=${jogo.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/jogos/deletarjogo/{id}(id=${jogo.id})}" class="btn btn-danger btn-sm">Deletar</a>
+                    <a th:href="@{/jogos/deletar/{id}(id=${jogo.id})}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Tem certeza que deseja deletar essa mídia?')">Deletar</a>
                 </td>
             </tr>
             </tbody>

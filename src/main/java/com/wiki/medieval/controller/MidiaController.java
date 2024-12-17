@@ -4,10 +4,7 @@ import com.wiki.medieval.model.MidiaModel;
 import com.wiki.medieval.repository.MidiaRepository;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,11 +42,25 @@ public class MidiaController {
         return "midias/livros/listalivros";
     }
 
-    // Exibi formulário de adição de mídia
+    // Exibi formulário para adicionar mídia
     @GetMapping("/adicionarmidia")
     public String exibirFormularioMidia(Model model) {
         model.addAttribute("midia", new MidiaModel());
         return "midias/adicionarmidia";
+    }
+
+    // Adiciona midia
+    @PostMapping("/midias")
+    public String adicionarMidia(@ModelAttribute("midia") MidiaModel midia) {
+        midiaRepository.save(midia);
+        return "index";
+    }
+
+    // Deletar mídia
+    @GetMapping("{tipo}/deletar/{id}")
+    public String deletarMidia(@PathVariable Long id) {
+        midiaRepository.deleteById(id);
+        return "index";
     }
 
     // Exibi formulário para editar filme
