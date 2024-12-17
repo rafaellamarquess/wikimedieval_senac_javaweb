@@ -81,16 +81,43 @@ public class MidiaController {
 
     // Salva os dados editados no banco
     @PostMapping("/midias/filmes/{id}")
-    public String salvarEdicao(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
-        MidiaModel midiaExistente = midiaRepository.findById(id)
+    public String editarFilme(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
+        MidiaModel filmeExistente = midiaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
-        midiaExistente.setTitulo(midiaAtualizada.getTitulo());
-        midiaExistente.setDescricao(midiaAtualizada.getDescricao());
-        midiaExistente.setAutorDiretor(midiaAtualizada.getAutorDiretor());
-        midiaExistente.setAnoLancamento(midiaAtualizada.getAnoLancamento());
-        midiaExistente.setTipo(midiaAtualizada.getTipo());
-        midiaRepository.save(midiaExistente);
+        filmeExistente.setTitulo(midiaAtualizada.getTitulo());
+        filmeExistente.setDescricao(midiaAtualizada.getDescricao());
+        filmeExistente.setAutorDiretor(midiaAtualizada.getAutorDiretor());
+        filmeExistente.setAnoLancamento(midiaAtualizada.getAnoLancamento());
+        filmeExistente.setTipo(midiaAtualizada.getTipo());
+        midiaRepository.save(filmeExistente);
         return "redirect:/filmes";
     }
 
+    // Salva os dados editados no banco
+    @PostMapping("/midias/jogos/{id}")
+    public String EditarJogo(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
+        MidiaModel jogoExistente = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        jogoExistente.setTitulo(midiaAtualizada.getTitulo());
+        jogoExistente.setDescricao(midiaAtualizada.getDescricao());
+        jogoExistente.setAutorDiretor(midiaAtualizada.getAutorDiretor());
+        jogoExistente.setAnoLancamento(midiaAtualizada.getAnoLancamento());
+        jogoExistente.setTipo(midiaAtualizada.getTipo());
+        midiaRepository.save(jogoExistente);
+        return "redirect:/jogos";
+    }
+
+    // Salva os dados editados no banco
+    @PostMapping("/midias/livros/{id}")
+    public String EditarLivro(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
+        MidiaModel livroExistente = midiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mídia não encontrada"));
+        livroExistente.setTitulo(midiaAtualizada.getTitulo());
+        livroExistente.setDescricao(midiaAtualizada.getDescricao());
+        livroExistente.setAutorDiretor(midiaAtualizada.getAutorDiretor());
+        livroExistente.setAnoLancamento(midiaAtualizada.getAnoLancamento());
+        livroExistente.setTipo(midiaAtualizada.getTipo());
+        midiaRepository.save(livroExistente);
+        return "redirect:/livros";
+    }
 }
