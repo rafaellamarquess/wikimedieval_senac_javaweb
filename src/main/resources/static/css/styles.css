@@ -10,13 +10,16 @@
     --cor-azul: #1E3A8A;
     --cor-preto: #111827;
     --cor-branco: #FFFFFF;
+    --cor-cinza-claro: #F7FAFC;
+    --cor-cinza-escuro: #2D3748;
 }
 
 /* Corpo da página */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: var(--cor-preto);
     color: var(--cor-branco);
+    line-height: 1.6;
 }
 
 /* Navbar */
@@ -26,6 +29,8 @@ body {
 
 .navbar a.nav-link {
     color: var(--cor-branco) !important;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .navbar-toggler-icon {
@@ -38,6 +43,7 @@ body {
     color: var(--cor-branco);
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .jumbotron {
@@ -46,10 +52,12 @@ body {
     padding: 40px 20px;
     text-align: center;
     border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .jumbotron h2 {
     font-size: 2.5rem;
+    font-weight: bold;
 }
 
 /* Imagem abaixo do banner */
@@ -58,12 +66,41 @@ body {
     height: auto;
     border-radius: 8px;
     margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Seções principais */
 .container h3 {
     color: var(--cor-azul);
     margin-bottom: 20px;
+}
+
+/* Tabela */
+.table {
+    background-color: var(--cor-cinza-claro);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+}
+
+.table td a {
+    color: var(--cor-branco);
+    text-decoration: none;
+}
+
+.table td a:hover {
+    background-color: var(--cor-azul);
+    border-radius: 5px;
+    color: var(--cor-branco);
 }
 
 /* Rodapé */
@@ -73,6 +110,7 @@ footer {
     padding: 30px 0;
     text-align: center;
     border-top: 3px solid var(--cor-branco);
+    margin-top: 50px;
 }
 
 footer a {
@@ -80,11 +118,18 @@ footer a {
     text-decoration: none;
 }
 
+footer a:hover {
+    color: var(--cor-cinza-claro);
+}
+
+/* Formulário */
 footer form input,
 footer form textarea {
     background-color: var(--cor-preto);
     border: 1px solid var(--cor-azul);
     color: var(--cor-branco);
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 footer form button {
@@ -92,8 +137,14 @@ footer form button {
     border: none;
     color: var(--cor-branco);
     padding: 10px 20px;
-    margin-top: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+footer form button:hover {
+    background-color: var(--cor-cinza-escuro);
 }
 
 /* Responsividade para dispositivos móveis */
@@ -104,5 +155,13 @@ footer form button {
 
     .container {
         padding: 15px;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    footer form button {
+        width: 100%;
     }
 }

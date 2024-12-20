@@ -35,6 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registro">Sign In</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -48,24 +51,23 @@
                     <h4>Login - Wiki Medieval</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/login" method="post">
-                        <!-- Erro de autenticação -->
-                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                            Usuário ou senha inválidos.
-                        </div>
-                        <!-- Formulário de login -->
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                    <form th:action="@{/login}" method="post">
+                        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                            <span th:text="${errorMessage}"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="text" class="form-control" id="emaillogin" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
                         </div>
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-primary">Entrar</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -76,7 +78,6 @@
 <footer class="bg-dark text-white text-center p-4 mt-5">
     <div class="container">
         <div class="row">
-            <!-- Coluna para os links de contato -->
             <div class="col-md-6">
                 <p><strong>Entre em contato conosco:</strong></p>
                 <ul class="list-unstyled">
@@ -89,7 +90,7 @@
             <div class="col-md-6">
                 <form action="/contato" method="post">
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail" required>
+                        <input type="email" class="form-control" id="emailcontato" name="email" placeholder="Seu e-mail" required>
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Sua mensagem" required></textarea>

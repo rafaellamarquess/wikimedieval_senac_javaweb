@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "Usuarios")
-public class UserModel {
+@Table(name = "usuarios")
+public class UserModel  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,12 @@ public class UserModel {
     private String email;
     private String senha;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario")
-    private String tipoUsuario;
+    private Role role;
+
+    public enum Role {
+        ADMIN,
+        USER,
+    }
 }

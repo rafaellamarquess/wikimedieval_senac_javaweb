@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Adicionar Mídia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Medieval</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -42,38 +44,41 @@
 </nav>
 
 <div class="container mt-5">
-    <h1 class="text-center">Editar Filme</h1>
-
-    <form th:action="@{/midias/filmes/{id}(id=${midia.id})}" method="post" th:object="${midia}">
-        <div class="mb-3">
-            <label for="titulo" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Registro - Wiki Medieval</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/register" method="post">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+                        <label for="tipoUsuario">Tipo de Usuário</label>
+                        <select id="tipoUsuario" name="tipoUsuario">
+                            <option value="USER">Usuário</option>
+                            <option value="ADMIN">Administrador</option>
+                        </select>
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="descricao" class="form-label">Descricao</label>
-            <textarea class="form-control" id="descricao" th:field="*{descricao}" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="autorDiretor" class="form-label">Diretor</label>
-            <input type="text" class="form-control" id="autorDiretor" th:field="*{autorDiretor}" required>
-        </div>
-        <div class="mb-3">
-            <label for="anoLancamento" class="form-label">Ano de Lançamento</label>
-            <input type="number" class="form-control" id="anoLancamento" th:field="*{anoLancamento}" required>
-        </div>
-        <div class="mb-3">
-            <label for="tipoMidia" class="form-label">Tipo de Mídia</label>
-            <select class="form-control" id="tipoMidia" th:field="*{tipo}" required>
-                <option value="Filme">Filme</option>
-                <option value="VideoGame">Jogo</option>
-                <option value="Livro">Livro</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar Mídia</button>
-    </form>
-
-    <a href="/filmes" class="btn btn-secondary mt-3">Voltar para a Lista de Filmes</a>
+    </div>
 </div>
+
 
 <footer class="bg-dark text-white text-center p-4 mt-5">
     <div class="container">
@@ -90,7 +95,7 @@
             <div class="col-md-6">
                 <form action="/contato" method="post">
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail" required>
+                        <input type="email" class="form-control" id="emailcontato" name="email" placeholder="Seu e-mail" required>
                     </div>
                     <div class="mb-3">
                         <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Sua mensagem" required></textarea>
