@@ -2,6 +2,7 @@ package com.wiki.medieval.controller;
 
 import com.wiki.medieval.model.MidiaModel;
 import com.wiki.medieval.repository.MidiaRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,7 @@ public class MidiaController {
     }
 
     // Adiciona midia
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/midias")
     public String adicionarMidia(@ModelAttribute("midia") MidiaModel midia) {
         midiaRepository.save(midia);
@@ -57,6 +59,7 @@ public class MidiaController {
     }
 
     // Deletar mídia
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("{tipo}/deletar/{id}")
     public String deletarMidia(@PathVariable Long id) {
         midiaRepository.deleteById(id);
@@ -91,6 +94,7 @@ public class MidiaController {
     }
 
     // Salva os dados editados no banco
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/midias/filmes/{id}")
     public String editarFilme(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
         MidiaModel filmeExistente = midiaRepository.findById(id)
@@ -105,6 +109,7 @@ public class MidiaController {
     }
 
     // Salva os dados editados no banco
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/midias/jogos/{id}")
     public String EditarJogo(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
         MidiaModel jogoExistente = midiaRepository.findById(id)
@@ -119,6 +124,7 @@ public class MidiaController {
     }
 
     // Salva os dados editados no banco
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/midias/livros/{id}")
     public String EditarLivro(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
         MidiaModel livroExistente = midiaRepository.findById(id)
