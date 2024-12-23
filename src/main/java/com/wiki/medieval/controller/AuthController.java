@@ -1,15 +1,13 @@
 package com.wiki.medieval.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AuthController {
@@ -28,16 +26,20 @@ public class AuthController {
 
     // Metodo para autenticar o usuário
     @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String senha, Model model) {
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String senha) {
+        System.out.println("Recebendo dados de login: email=" + email + ", senha=" + senha); // Log para verificação
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(email, senha)
+                    new UsernamePasswordAuthenticationToken(
+                            email,
+                            senha
+                    )
             );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "index";
-        } catch (AuthenticationException e) {
-            model.addAttribute("errorMessage", "E-mail ou senha inválidos.");
-            return "login";
+            authentication.getPrincipal();
+            return ResponseEntity.ok().body("Login bem-sucedido!");
+        } catch (BadCredentialsException e) {
+            System.out.println("Credenciais inválidas: " + e.getMessage());  // Log de erro
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
     }
 
