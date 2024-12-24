@@ -1,5 +1,6 @@
 package com.wiki.medieval.controller;
 
+import com.wiki.medieval.config.UserPrincipalImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,20 +28,15 @@ public class AuthController {
     // Metodo para autenticar o usuário
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String senha) {
-        System.out.println("Recebendo dados de login: email=" + email + ", senha=" + senha); // Log para verificação
+        System.out.println("Recebendo dados de login: email=" + email + ", senha=" + senha);
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            email,
-                            senha
-                    )
-            );
-            authentication.getPrincipal();
-            return ResponseEntity.ok().body("Login bem-sucedido!");
+            var loginauthentication = new UsernamePasswordAuthenticationToken(email, senha);
+            Authentication authentication = this.authenticationManager.authenticate(loginauthentication);
+            UserPrincipalImpl userPrincipal = (UserPrincipalImpl) authentication.getPrincipal();
+            return ResponseEntity.ok(userPrincipal.getUserModel());
         } catch (BadCredentialsException e) {
-            System.out.println("Credenciais inválidas: " + e.getMessage());  // Log de erro
+            System.out.println("Credenciais inválidas: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
     }
-
 }

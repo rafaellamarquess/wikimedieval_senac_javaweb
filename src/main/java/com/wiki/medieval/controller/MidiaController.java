@@ -124,7 +124,6 @@ public class MidiaController {
     }
 
     // Salva os dados editados no banco
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/midias/livros/{id}")
     public String EditarLivro(@PathVariable Long id, @ModelAttribute("midia") MidiaModel midiaAtualizada) {
         MidiaModel livroExistente = midiaRepository.findById(id)

@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/static">Wiki Medieval</a>
+        <a class="navbar-brand" href="/">Wiki Medieval</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,7 +51,7 @@
                     <h4>Registro - Wiki Medieval</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/register" method="post">
+                    <form th:action="@{/registro}" method="post" th:object="${usuario}">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome" required>
@@ -64,8 +64,8 @@
                             <label for="senha" class="form-label">Senha</label>
                             <input type="password" class="form-control" id="senha" name="senha" required>
                         </div>
-                        <label for="tipoUsuario">Tipo de Usuário</label>
-                        <select id="tipoUsuario" name="tipoUsuario">
+                        <label for="role">Tipo de Usuário</label>
+                        <select id="role" name="role">
                             <option value="USER">Usuário</option>
                             <option value="ADMIN">Administrador</option>
                         </select>
