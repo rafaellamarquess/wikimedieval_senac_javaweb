@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki Medieval</title>
+    <title>Pesquisar Mídias</title>    <title>Wiki Medieval</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -49,41 +47,32 @@
 </nav>
 
 
-<div class="container-fluid mt-4 mb-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-info text-center">
-                <h2>Bem-vindo ao Wiki Medieval!</h2>
-                <p>Aqui você encontra tudo sobre a Idade Média e suas representações na cultura pop.</p>
-            </div>
-            <div class="container">
-                <img id="banner-image" src="/img/banner.jpg" alt="Imagem medieval">
-            </div>
-        </div>
-    </div>
+<h1>Pesquisar Mídias</h1>
+<form th:action="@{/search}" method="get">
+    <input type="text" name="query" th:value="${query}" placeholder="Buscar mídia..." required>
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Resultados:</h2>
+<div th:if="${resultados.size() == 0}">
+    <p>Nenhuma mídia encontrada.</p>
 </div>
 
-<div class="container">
-    <h3>Explore nossas categorias:</h3>
-    <div class="row">
-        <div class="col-md-4">
-            <h4><a href="/filmes" class="text-decoration-none">Filmes</a></h4>
-            <p>Descubra filmes que retratam a Idade Média e sua cultura.</p>
-        </div>
-        <div class="col-md-4">
-            <h4><a href="/jogos" class="text-decoration-none">Jogos</a></h4>
-            <p>Explore jogos baseados na Idade Média e suas histórias.</p>
-        </div>
-        <div class="col-md-4">
-            <h4><a href="/livros" class="text-decoration-none">Livros</a></h4>
-            <p>Leia sobre a Idade Média através de livros clássicos e modernos.</p>
-        </div>
-    </div>
-</div>
+<ul th:if="${resultados.size() > 0}">
+    <li th:each="midia : ${resultados}">
+        <strong th:text="${midia.titulo}"></strong> -
+        <span th:text="${midia.tipo}"></span> -
+        <span th:text="${midia.descricao}"></span> -
+        <span th:text="${midia.autorDiretor}"></span> -
+        <span th:text="${midia.anoLancamento}"></span>
+    </li>
+</ul>
+
 
 <footer class="bg-dark text-white text-center p-4 mt-5">
     <div class="container">
         <div class="row">
+            <!-- Coluna para os links de contato -->
             <div class="col-md-6">
                 <p><strong>Entre em contato conosco:</strong></p>
                 <ul class="list-unstyled">
