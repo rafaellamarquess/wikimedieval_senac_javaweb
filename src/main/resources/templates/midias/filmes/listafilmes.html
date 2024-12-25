@@ -31,11 +31,10 @@
                         <button class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/registro">Sign In</a>
+                <li class="nav-item" >
+                    <form action="/logout" method="post">
+                        <button type="submit" class="btn btn-outline-light">Logout</button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -69,7 +68,7 @@
                 <td th:text="${filme.autorDiretor}"></td>
                 <td th:text="${filme.anoLancamento}"></td>
                 <td>
-                    <a th:href="@{/filmes/editarfilme/{id}(id=${filme.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/filmes/editarmidia/{id}(id=${filme.id})}" class="btn btn-warning btn-sm">Editar</a>
                     <a th:href="@{/filmes/deletar/{id}(id=${filme.id})}" class="btn btn-danger btn-sm"
                        onclick="return confirm('Tem certeza que deseja deletar essa mídia?')">Deletar</a>
                 </td>

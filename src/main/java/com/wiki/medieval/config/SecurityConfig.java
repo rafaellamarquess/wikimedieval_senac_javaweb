@@ -10,6 +10,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,18 +54,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
-//                        .requestMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-//                        .requestMatchers(HttpMethod.POST, "/adicionarmidia").hasAuthority("ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE, "/delete").hasAuthority("ADMIN")
-//                        .requestMatchers(HttpMethod.POST, "/editar").hasAuthority("ADMIN")
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/registro").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/login", "/registro").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/adicionarmidia").hasAuthority("ADMIN")
-                                .requestMatchers("/css/**", "/js/**", "/img/**", "/login", "/registro").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/delete").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/editarmidia").hasAuthority("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> {
