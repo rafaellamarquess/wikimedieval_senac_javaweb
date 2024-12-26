@@ -28,7 +28,7 @@ public class SearchController {
         List<MidiaModel> resultados;
         if (query != null && !query.isEmpty()) {
             resultados = midiaRepository.findByTituloContainingIgnoreCaseOrTipoOrAutorDiretorContainingIgnoreCaseOrAnoLancamento(
-                    query, null, query, null); // 'query' vai buscar em título e autorDiretor
+                    query, null, query, null); //
         } else {
             resultados = new ArrayList<>();
         }

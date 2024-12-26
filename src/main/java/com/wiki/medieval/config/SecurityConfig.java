@@ -57,6 +57,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/midias/**").permitAll()
+                        .requestMatchers("/search").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/login", "/registro").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/adicionarmidia").hasAuthority("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/delete").hasAuthority("ADMIN")
