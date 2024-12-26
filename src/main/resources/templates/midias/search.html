@@ -46,33 +46,48 @@
     </div>
 </nav>
 
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Pesquisar Mídias</h1>
+    <form th:action="@{/search}" method="get" class="row g-3">
+        <div class="col-md-3">
+            <input type="text" name="titulo" th:value="${titulo}" class="form-control" placeholder="Buscar título..." />
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="autorDiretor" th:value="${autorDiretor}" class="form-control" placeholder="Buscar autor/diretor..." />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="anoLancamento" th:value="${anoLancamento}" class="form-control" placeholder="Ano de lançamento..." />
+        </div>
+        <div class="col-md-2">
+            <select name="tipoMidia" class="form-select">
+                <option value="Livro" th:selected="${tipoMidia == 'Livro'}">Livro</option>
+                <option value="Filme" th:selected="${tipoMidia == 'Filme'}">Filme</option>
+                <option value="Videogame" th:selected="${tipoMidia == 'Videogame'}">Videogame</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </form>
 
-<h1>Pesquisar Mídias</h1>
-<form th:action="@{/search}" method="get">
-    <input type="text" name="query" th:value="${query}" placeholder="Buscar mídia..." required>
-    <button type="submit">Buscar</button>
-</form>
+    <h2 class="mt-5">Resultados:</h2>
+    <div th:if="${resultados.size() == 0}" class="alert alert-warning">
+        <p>Nenhuma mídia encontrada.</p>
+    </div>
 
-<h2>Resultados:</h2>
-<div th:if="${resultados.size() == 0}">
-    <p>Nenhuma mídia encontrada.</p>
+    <ul th:if="${resultados.size() > 0}" class="list-group">
+        <li th:each="midia : ${resultados}" class="list-group-item">
+            <strong th:text="${midia.titulo}"></strong> -
+            <span th:text="${midia.tipo}"></span> -
+            <span th:text="${midia.autorDiretor}"></span> -
+            <span th:text="${midia.anoLancamento}"></span>
+        </li>
+    </ul>
 </div>
-
-<ul th:if="${resultados.size() > 0}">
-    <li th:each="midia : ${resultados}">
-        <strong th:text="${midia.titulo}"></strong> -
-        <span th:text="${midia.tipo}"></span> -
-        <span th:text="${midia.descricao}"></span> -
-        <span th:text="${midia.autorDiretor}"></span> -
-        <span th:text="${midia.anoLancamento}"></span>
-    </li>
-</ul>
-
 
 <footer class="bg-dark text-white text-center p-4 mt-5">
     <div class="container">
         <div class="row">
-            <!-- Coluna para os links de contato -->
             <div class="col-md-6">
                 <p><strong>Entre em contato conosco:</strong></p>
                 <ul class="list-unstyled">

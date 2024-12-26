@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BuscarMidiaTest {
+public class BuscarMidiasTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,31 +44,31 @@ public class BuscarMidiaTest {
                 .andExpect(status().isOk());
     }
 
-
     @Test
     public void testBuscarMidiasPorAutor() throws Exception {
-        String autorBusca = "J.R.R. Tolkien";
+        String autorBusca = "Mel Gibson";
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/search")
                         .param("autorDiretor", autorBusca))
                 .andExpect(status().isOk())
                 .andExpect(view().name("midias/search"))
-                .andExpect(model().attribute("midias", hasItem(
+                .andExpect(model().attribute("resultados", hasItem(
                         hasProperty("autorDiretor", is(autorBusca)))));
     }
 
     @Test
     public void testBuscarMidiasPorAnoLancamento() throws Exception {
-        String anoLancamentoBusca = "2001";
+        Integer anoLancamentoBusca = 2001;
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/search")
-                        .param("anoLancamento", anoLancamentoBusca))
+                        .param("anoLancamento", String.valueOf(anoLancamentoBusca)))
                 .andExpect(status().isOk())
                 .andExpect(view().name("midias/search"))
-                .andExpect(model().attribute("midias", hasItem(
+                .andExpect(model().attribute("resultados", hasItem(
                         hasProperty("anoLancamento", is(anoLancamentoBusca)))));
     }
+
 
     @Test
     public void testBuscarMidiasPorTipoMidia() throws Exception {
@@ -78,7 +78,7 @@ public class BuscarMidiaTest {
                         .param("tipoMidia", tipoMidiaBusca))
                 .andExpect(status().isOk())
                 .andExpect(view().name("midias/search"))
-                .andExpect(model().attribute("midias", hasItem(
-                        hasProperty("tipoMidia", is(tipoMidiaBusca)))));
+                .andExpect(model().attribute("resultados", everyItem(
+                        hasProperty("tipo", is(MidiaModel.TipoMidia.valueOf(tipoMidiaBusca))))));
     }
 }

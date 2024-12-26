@@ -42,7 +42,6 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Editar Filme</h1>
-
     <form th:action="@{/midias/filmes/{id}(id=${midia.id})}" method="post" th:object="${midia}">
         <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
